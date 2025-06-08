@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Random Test Credit Card Numbers Generator</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        body {
+            background: #f6faf7;
+            font-family: 'Inter', Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            max-width: 950px;
+            margin: 40px auto;
+            background: #fff;
+            border-radius: 18px;
+            box-shadow: 0 4px 24px rgba(0,0,0,0.08);
+            padding: 40px 30px 30px 30px;
+            display: flex;
+            gap: 40px;
+            transition: box-shadow 0.3s;
+        }
+        .container:hover {
+            box-shadow: 0 8px 32px rgba(0,0,0,0.13);
+        }
+        .form-section {
+            flex: 1.2;
+        }
+        .result-section {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+        h1 {
+            font-size: 2.1rem;
+            margin-bottom: 18px;
+            color: #2d3a4a;
+            font-weight: 600;
+            letter-spacing: -1px;
+        }
+        label {
+            font-weight: 500;
+            color: #3a4d5c;
+            margin-bottom: 6px;
+            display: block;
+        }
+        input, select {
+            width: 100%;
+            padding: 11px 14px;
+            margin-bottom: 18px;
+            border: 1.5px solid #e0e7ef;
+            border-radius: 10px;
+            font-size: 1rem;
+            background: #f8fafc;
+            transition: border 0.2s, box-shadow 0.2s;
+        }
+        input:focus, select:focus {
+            border: 1.5px solid #4f8cff;
+            outline: none;
+            box-shadow: 0 0 0 2px #e3f0ff;
+        }
+        .row {
+            display: flex;
+            gap: 12px;
+        }
+        .row > div {
+            flex: 1;
+        }
+        .checkbox-row {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 18px;
+        }
+        .checkbox-row label {
+            margin-bottom: 0;
+            font-weight: 400;
+        }
+        button {
+            background: linear-gradient(90deg, #4f8cff 0%, #38cfa6 100%);
+            color: #fff;
+            border: none;
+            border-radius: 10px;
+            padding: 13px 30px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            margin-top: 8px;
+            transition: background 0.2s, transform 0.15s, box-shadow 0.2s;
+            box-shadow: 0 2px 8px rgba(79,140,255,0.08);
+            letter-spacing: 0.5px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        button:hover {
+            background: linear-gradient(90deg, #38cfa6 0%, #4f8cff 100%);
+            transform: translateY(-2px) scale(1.03);
+            box-shadow: 0 4px 16px rgba(56,207,166,0.13);
+        }
+        .result-section label {
+            font-size: 1rem;
+            margin-bottom: 6px;
+        }
+        #results {
+            flex: 1;
+            width: 100%;
+            min-height: 220px;
+            font-size: 1rem;
+            padding: 14px;
+            border: 1.5px solid #e0e7ef;
+            border-radius: 12px;
+            background: #f8fafc;
+            resize: vertical;
+            font-family: 'Fira Mono', 'Consolas', monospace;
+            margin-bottom: 0;
+            transition: border 0.2s;
+        }
+        .format-row {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 18px;
+        }
+        .format-row select {
+            width: 160px;
+        }
+        .btn-group {
+            margin-top: 10px;
+            display: flex;
+            gap: 10px;
+        }
+        .spinner {
+            width: 22px;
+            height: 22px;
+            border: 3px solid #e0e7ef;
+            border-top: 3px solid #4f8cff;
+            border-radius: 50%;
+            animation: spin 0.8s linear infinite;
+            display: inline-block;
+            vertical-align: middle;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        @media (max-width: 900px) {
+            .container { flex-direction: column; gap: 0; }
+            .result-section { margin-top: 30px; }
+        }
+        @media (max-width: 600px) {
+            .container { padding: 10px; }
+            h1 { font-size: 1.3rem; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="form-section">
+            <h1>Random Test Credit Card Numbers Generator</h1>
+            <label for="bin">BIN</label>
+            <input type="text" id="bin" placeholder="Enter BIN (min 6 digits, max 16)" maxlength="16">
+
+            <div class="checkbox-row">
+                <input type="checkbox" id="dateCheck" checked>
+                <label for="dateCheck">DATE</label>
+            </div>
+            <div class="row" id="dateRow">
+                <div>
+                    <label for="month">MONTH</label>
+                    <select id="month">
+                        <option value="random">Random</option>
+                        <option value="01">01</option>
+                        <option value="02">02</option>
+                        <option value="03">03</option>
+                        <option value="04">04</option>
+                        <option value="05">05</option>
+                        <option value="06">06</option>
+                        <option value="07">07</option>
+                        <option value="08">08</option>
+                        <option value="09">09</option>
+                        <option value="10">10</option>
+                        <option value="11">11</option>
+                        <option value="12">12</option>
+                    </select>
+                </div>
+                <div>
+                    <label for="year">YEAR</label>
+                    <select id="year">
+                        <option value="random">Random</option>
+                        <!-- Years will be populated by JS -->
+                    </select>
+                </div>
+            </div>
+
+            <div class="checkbox-row">
+                <input type="checkbox" id="cvvCheck" checked>
+                <label for="cvvCheck">CVV</label>
+            </div>
+            <input type="text" id="cvv" placeholder="Leave blank to randomize" maxlength="3">
+
+            <label for="quantity">QUANTITY</label>
+            <input type="number" id="quantity" value="10" min="1" max="1000">
+
+            <div class="format-row">
+                <label for="format">FORMAT</label>
+                <select id="format">
+                    <option value="pipe">PIPE</option>
+                    <option value="csv">CSV</option>
+                    <option value="xml">XML</option>
+                    <option value="json">JSON</option>
+                    <option value="sql">SQL</option>
+                </select>
+            </div>
+
+            <div class="btn-group">
+                <button id="generateBtn">Generate CC</button>
+            </div>
+        </div>
+        <div class="result-section">
+            <label for="results">RESULT</label>
+            <textarea id="results" readonly></textarea>
+            <div class="btn-group">
+                <button id="copyBtn">Copy</button>
+                <button id="checkBtn">Check</button>
+            </div>
+        </div>
+    </div>
+    <div id="spinner-overlay" style="display:none; position:fixed; top:0; left:0; width:100vw; height:100vh; background:rgba(255,255,255,0.5); z-index:9999; align-items:center; justify-content:center;">
+        <div class="spinner"></div>
+    </div>
+    <script src="app.js"></script>
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Populate year select (current year + 7)
+        const yearSelect = document.getElementById('year');
+        yearSelect.innerHTML = '';
+        const randomOpt = document.createElement('option');
+        randomOpt.value = 'random';
+        randomOpt.textContent = 'Random';
+        yearSelect.appendChild(randomOpt);
+        const currentYear = new Date().getFullYear();
+        for (let i = 0; i <= 7; i++) {
+            const y = String(currentYear + i);
+            const opt = document.createElement('option');
+            opt.value = y;
+            opt.textContent = y;
+            yearSelect.appendChild(opt);
+        }
+        // Hide/show date row
+        const dateCheck = document.getElementById('dateCheck');
+        const dateRow = document.getElementById('dateRow');
+        dateCheck.addEventListener('change', function() {
+            dateRow.style.display = this.checked ? 'flex' : 'none';
+        });
+        // Hide/show cvv input
+        const cvvCheck = document.getElementById('cvvCheck');
+        const cvvInput = document.getElementById('cvv');
+        cvvCheck.addEventListener('change', function() {
+            cvvInput.style.display = this.checked ? 'block' : 'none';
+        });
+        // Default state
+        dateRow.style.display = dateCheck.checked ? 'flex' : 'none';
+        cvvInput.style.display = cvvCheck.checked ? 'block' : 'none';
+        // Nút copy kết quả
+        const copyBtn = document.getElementById('copyBtn');
+        copyBtn.addEventListener('click', function() {
+            const results = document.getElementById('results');
+            if (navigator.clipboard) {
+                navigator.clipboard.writeText(results.value).then(() => {
+                    copyBtn.textContent = 'Copied!';
+                    setTimeout(() => { copyBtn.textContent = 'Copy'; }, 1200);
+                });
+            } else {
+                results.select();
+                document.execCommand('copy');
+                copyBtn.textContent = 'Copied!';
+                setTimeout(() => { copyBtn.textContent = 'Copy'; }, 1200);
+            }
+        });
+    });
+    </script>
+</body>
+</html>
